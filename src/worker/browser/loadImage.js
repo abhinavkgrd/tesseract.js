@@ -61,21 +61,21 @@ const loadImage = async (image) => {
         await fixOrientationFromUrlOrBlobOrFile(img),
       );
     }
-  } else if (image instanceof HTMLElement) {
-    if (image.tagName === 'IMG') {
-      data = await loadImage(image.src);
-    }
-    if (image.tagName === 'VIDEO') {
-      data = await loadImage(image.poster);
-    }
-    if (image.tagName === 'CANVAS') {
-      await new Promise((resolve) => {
-        image.toBlob(async (blob) => {
-          data = await readFromBlobOrFile(blob);
-          resolve();
-        });
-      });
-    }
+  // } else if (image instanceof HTMLElement) {
+  //   if (image.tagName === 'IMG') {
+  //     data = await loadImage(image.src);
+  //   }
+  //   if (image.tagName === 'VIDEO') {
+  //     data = await loadImage(image.poster);
+  //   }
+  //   if (image.tagName === 'CANVAS') {
+  //     await new Promise((resolve) => {
+  //       image.toBlob(async (blob) => {
+  //         data = await readFromBlobOrFile(blob);
+  //         resolve();
+  //       });
+  //     });
+  //   }
   } else if (image instanceof File || image instanceof Blob) {
     let img = image;
     if (!image.name.endsWith('.pbm')) {
