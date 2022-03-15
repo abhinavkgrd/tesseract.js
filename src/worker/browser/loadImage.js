@@ -1,4 +1,4 @@
-const resolveURL = require('resolve-url');
+// const resolveURL = require('resolve-url');
 // const blueimpLoadImage = require('blueimp-load-image');
 
 /**
@@ -21,7 +21,7 @@ const readFromBlobOrFile = (blob) => (
   })
 );
 
-const fixOrientationFromUrlOrBlobOrFile = (blob) => blob;
+// const fixOrientationFromUrlOrBlobOrFile = (blob) => blob;
 //   new Promise((resolve) => {
 //     blueimpLoadImage(
 //       blob,
@@ -47,20 +47,20 @@ const loadImage = async (image) => {
     return 'undefined';
   }
 
-  if (typeof image === 'string') {
-    if (image.endsWith('.pbm')) {
-      const resp = await fetch(resolveURL(image));
-      data = await resp.arrayBuffer();
-    } else {
-      let img = image;
-      // If not Base64 Image
-      if (!/data:image\/([a-zA-Z]*);base64,([^"]*)/.test(image)) {
-        img = resolveURL(image);
-      }
-      data = await readFromBlobOrFile(
-        await fixOrientationFromUrlOrBlobOrFile(img),
-      );
-    }
+  // if (typeof image === 'string') {
+  //   if (image.endsWith('.pbm')) {
+  //     const resp = await fetch(resolveURL(image));
+  //     data = await resp.arrayBuffer();
+  //   } else {
+  //     let img = image;
+  //     // If not Base64 Image
+  //     if (!/data:image\/([a-zA-Z]*);base64,([^"]*)/.test(image)) {
+  //       img = resolveURL(image);
+  //     }
+  //     data = await readFromBlobOrFile(
+  //       await fixOrientationFromUrlOrBlobOrFile(img),
+  //     );
+  //   }
   // } else if (image instanceof HTMLElement) {
   //   if (image.tagName === 'IMG') {
   //     data = await loadImage(image.src);
@@ -76,13 +76,13 @@ const loadImage = async (image) => {
   //       });
   //     });
   //   }
-  } else if (image instanceof File || image instanceof Blob) {
-    let img = image;
-    if (!image.name?.endsWith('.pbm')) {
-      img = await fixOrientationFromUrlOrBlobOrFile(img);
-    }
-    data = await readFromBlobOrFile(img);
-  }
+  // } else if (image instanceof File || image instanceof Blob) {
+  const img = image;
+  // if (!image.name?.endsWith('.pbm')) {
+  //   img = await fixOrientationFromUrlOrBlobOrFile(img);
+  // }
+  data = await readFromBlobOrFile(img);
+  // }
 
   return new Uint8Array(data);
 };
