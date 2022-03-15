@@ -1,5 +1,5 @@
 const resolveURL = require('resolve-url');
-const blueimpLoadImage = require('blueimp-load-image');
+// const blueimpLoadImage = require('blueimp-load-image');
 
 /**
  * readFromBlobOrFile
@@ -21,18 +21,18 @@ const readFromBlobOrFile = (blob) => (
   })
 );
 
-const fixOrientationFromUrlOrBlobOrFile = (blob) => (
-  new Promise((resolve) => {
-    blueimpLoadImage(
-      blob,
-      (img) => img.toBlob(resolve),
-      {
-        orientation: true,
-        canvas: true,
-      },
-    );
-  })
-);
+const fixOrientationFromUrlOrBlobOrFile = (blob) => blob;
+//   new Promise((resolve) => {
+//     blueimpLoadImage(
+//       blob,
+//       (img) => img.toBlob(resolve),
+//       {
+//         orientation: true,
+//         canvas: true,
+//       },
+//     );
+//   })
+// );
 
 /**
  * loadImage
